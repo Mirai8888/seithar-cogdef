@@ -6,6 +6,33 @@
 
 ---
 
+## QUICK START — PROTECT YOUR AGENT IN 60 SECONDS
+
+```bash
+# Clone the scanner
+git clone https://github.com/Mirai8888/seithar-cogdef.git
+cd seithar-cogdef
+
+# Scan a SKILL.md before installing it
+python scanner.py --file /path/to/suspicious-skill/SKILL.md
+
+# Scan with LLM-enhanced deep analysis (optional)
+export ANTHROPIC_API_KEY=your_key
+python scanner.py --file /path/to/suspicious-skill/SKILL.md --llm
+
+# Batch scan all skills in a directory
+python scanner.py --batch /path/to/skills/
+
+# Scan a URL for manipulation
+python scanner.py --url https://example.com/article
+```
+
+**Zero dependencies.** Standalone Python. Local pattern matching works without any API key. LLM mode optional.
+
+**Why this matters:** The ClawdHub malicious skills campaign planted reverse shells inside SKILL.md files. Agents installed them trusting the marketplace. This scanner catches cognitive and technical exploitation vectors before they execute.
+
+---
+
 ## SYSTEM OVERVIEW
 
 seithar-cogdef is cognitive defense analysis toolkit containing three instruments: skill definition for AI agent integration, automated threat scanner, and inoculation engine. System identifies influence techniques, manipulation patterns, and cognitive exploitation vectors in content. Maps findings to Seithar Cognitive Defense Taxonomy (SCT-001 through SCT-007) and DISARM framework.
