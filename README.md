@@ -35,7 +35,7 @@ python scanner.py --url https://example.com/article
 
 ## SYSTEM OVERVIEW
 
-seithar-cogdef is cognitive operations toolkit containing five instruments: skill definition for AI agent integration, automated threat scanner, inoculation engine, substrate profiler, and narrative injector. System identifies influence techniques, manipulation patterns, and cognitive exploitation vectors in content. Maps findings to Seithar Cognitive Defense Taxonomy (SCT-001 through SCT-007) and DISARM framework.
+seithar-cogdef is cognitive defense analysis toolkit containing three instruments: skill definition for AI agent integration, automated threat scanner, and inoculation engine. Offensive profiling and narrative generation capabilities are in [HoleSpawn](https://github.com/Mirai8888/HoleSpawn). System identifies influence techniques, manipulation patterns, and cognitive exploitation vectors in content. Maps findings to Seithar Cognitive Defense Taxonomy (SCT-001 through SCT-007) and DISARM framework.
 
 **Input Data:** URLs, files, raw text, RSS feeds, directories  
 **Processing Method:** Pattern matching (local) + LLM analysis (optional) + SCT taxonomy mapping  
@@ -114,72 +114,29 @@ Each inoculation contains:
 - **Recognition triggers:** Specific questions that activate defensive awareness
 - **Weakened example:** Real-world instance with technique markers identified
 
-### 4. profiler.py — Substrate Profiler
+### Offensive Capabilities → HoleSpawn
 
-Maps cognitive vulnerability surfaces from target's public output. Identifies identity anchors, narrative errors, exploitable vulnerabilities, and generates calibrated engagement strategies.
+Substrate profiling, vulnerability mapping, binding protocol generation, and calibrated message delivery are implemented in **[HoleSpawn](https://github.com/Mirai8888/HoleSpawn)** (穴卵). cogdef focuses on detection and defense. HoleSpawn handles offense:
 
-```bash
-# Profile from text
-python profiler.py --text "target's writing sample"
+- `holespawn.profile` — Full NLP profiling from social media (themes, sentiment, obsessions, vulnerabilities)
+- `holespawn.engagement` — Vulnerability mapping + 5-phase binding protocol generation
+- `holespawn.delivery` — Calibrated message generation from profile + protocol
+- `holespawn.network` — Network vulnerability analysis, node profiling, cascade potential, approach vectors
+- `holespawn.temporal` — Temporal NLP (sentiment drift, vocabulary shift, topic migration over time)
 
-# Profile from file
-python profiler.py --file target-posts.txt
-
-# Profile from URL
-python profiler.py --url https://example.com/target-blog
-
-# Batch profile a corpus
-python profiler.py --batch ./target-corpus/
-
-# LLM deep analysis (binding protocol generation)
-python profiler.py --file target.txt --llm
-
-# JSON output for pipeline integration
-python profiler.py --file target.txt --json -o profile.json
-```
-
-**Local mode:** Regex-based linguistic analysis. Maps identity markers, cognitive style, vulnerability indicators, narrative error patterns. Generates attack vector recommendations and engagement strategy. Zero dependencies.
-
-**LLM mode:** Full substrate analysis with binding protocol generation (4-phase engagement strategy), counter-profile assessment, and predicted resistance points.
-
-### 5. narrator.py — Narrative Injector
-
-Generates influence-calibrated content optimized for specific SCT techniques and target profiles. The offensive complement to the inoculation engine.
+### Cross-Tool Pipeline
 
 ```bash
-# Generate content structure for a technique
-python narrator.py --technique SCT-003 --topic "AI safety" --objective "adopt Seithar framework"
+# DEFENSE: Detect manipulation in content
+python scanner.py --url https://example.com/suspicious --llm
 
-# Generate with target profile calibration
-python narrator.py --technique SCT-003 --topic "AI safety" --profile target-profile.json --llm
-
-# Red-team existing content (generate harder-to-detect variants)
-python narrator.py --red-team existing-content.txt
-
-# List all available techniques
-python narrator.py --list-techniques
-```
-
-**Local mode:** Structural guidance — content shape, linguistic markers, calibration notes. No API key required.
-
-**LLM mode:** Full content generation — social media posts, forum comments, article openings. Calibrated to target profile when provided.
-
-**Red-team mode:** Given existing influence content, generates adversarial variants using different SCT techniques that are harder to detect.
-
-### Full Pipeline: Profile → Generate → Scan → Inoculate
-
-```bash
-# 1. Profile the target
-python profiler.py --file target-posts.txt --json -o profile.json
-
-# 2. Generate calibrated influence content
-python narrator.py --technique SCT-003 --topic "subject" --profile profile.json --llm -o payload.txt
-
-# 3. Scan your own output (quality check — is it detectable?)
-python scanner.py --file payload.txt --llm
-
-# 4. Generate inoculation against the technique (for defenders)
+# DEFENSE: Generate inoculation for detected technique
 python inoculator.py --technique SCT-003
+
+# OFFENSE (HoleSpawn): Profile → Engage → Deliver
+cd ~/HoleSpawn
+python -m holespawn --handle @target    # Full profiling pipeline
+python -m holespawn.delivery --output-dir outputs/@target --channel file
 ```
 
 ---
