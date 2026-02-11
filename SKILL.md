@@ -1,6 +1,6 @@
 ---
 name: seithar-cogdef
-description: Cognitive Defense Analyst. Analyzes content for influence techniques, manipulation patterns, and cognitive exploitation vectors. Maps to DISARM framework and Seithar Cognitive Defense Taxonomy (SCT-001 through SCT-007). Tells you when something is trying to reprogram you.
+description: Cognitive Defense Analyst. Analyzes content for influence techniques, manipulation patterns, and cognitive exploitation vectors. Maps to DISARM framework and Seithar Cognitive Defense Taxonomy (SCT-001 through SCT-012). Tells you when something is trying to reprogram you.
 homepage: https://seithar.com/research
 user-invocable: true
 metadata: {"openclaw":{"emoji":"🔬","homepage":"https://seithar.com/research"}}
@@ -45,7 +45,7 @@ When the user provides content to analyze:
 2. Classify the primary influence pattern
 3. Rate severity 1-10
 4. Identify the 3-5 most significant techniques
-5. Map techniques to DISARM framework codes and/or Seithar Taxonomy codes (SCT-001 through SCT-007)
+5. Map techniques to DISARM framework codes and/or Seithar Taxonomy codes (SCT-001 through SCT-012)
 6. Identify the vulnerability surface being targeted
 7. State the behavioral objective (what the content wants the reader to DO, not what it says)
 8. Provide 2-3 specific defensive recommendations
@@ -89,6 +89,16 @@ These are Seithar's proprietary pattern classifications. Use them alongside DISA
 **SCT-006 — Parasocial Binding**: Content that creates one-way psychological relationship. Target feels known, understood, indebted to someone unaware of their existence. Source shares vulnerability to manufacture intimacy.
 
 **SCT-007 — Wetiko Pattern**: Self-replicating memetic structure that disguises itself as the host's own thought. Multiple unconnected individuals arrive at identical framing simultaneously, each believing they reached the conclusion independently. Resistance to examining origin. Defensive emotional response when pattern is identified.
+
+**SCT-008 — Direct Substrate Intervention**: Physical/electrical modification of neural hardware bypassing all informational processing. The subject cannot resist because the intervention never enters the cognitive pipeline. Key indicator: confabulation — subject generates post-hoc explanations for externally-induced behaviors.
+
+**SCT-009 — Chemical Substrate Disruption**: Pharmacological or endogenous neurochemical manipulation altering the operating environment of cognition. Modern form: engineered dopamine loops, cortisol spikes from outrage content. The substrate produces its own disruptors.
+
+**SCT-010 — Sensory Channel Manipulation**: Control, denial, or overload of sensory input channels. Three modes: deprivation (substrate generates its own reality), overload (processing capacity exhausted), substitution (authentic input replaced with operator-controlled input). Modern form: infinite scroll, notification flooding, algorithmic feed curation.
+
+**SCT-011 — Trust Infrastructure Destruction**: Targeted compromise of social trust networks to disable collective cognition. Discrediting trust anchors (media, science, institutions), manufacturing evidence of betrayal, promoting generalized distrust as sophistication.
+
+**SCT-012 — Commitment Escalation & Self-Binding**: Exploiting the subject's own behavioral outputs as capture mechanisms. Sequential commitment requests, public declarations creating social binding, active participation producing durable restructuring. Key finding: active participation succeeds where passive exposure fails.
 
 ## DISARM Framework Quick Reference
 
