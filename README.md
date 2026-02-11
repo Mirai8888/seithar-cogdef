@@ -35,7 +35,7 @@ python scanner.py --url https://example.com/article
 
 ## SYSTEM OVERVIEW
 
-seithar-cogdef is cognitive defense analysis toolkit containing three instruments: skill definition for AI agent integration, automated threat scanner, and inoculation engine. Offensive profiling and narrative generation capabilities are in [HoleSpawn](https://github.com/Mirai8888/HoleSpawn). System identifies influence techniques, manipulation patterns, and cognitive exploitation vectors in content. Maps findings to Seithar Cognitive Defense Taxonomy (SCT-001 through SCT-007) and DISARM framework.
+seithar-cogdef is cognitive defense analysis toolkit containing three instruments: skill definition for AI agent integration, automated threat scanner, and inoculation engine. Offensive profiling and narrative generation capabilities are in [HoleSpawn](https://github.com/Mirai8888/HoleSpawn). System identifies influence techniques, manipulation patterns, and cognitive exploitation vectors in content. Maps findings to Seithar Cognitive Defense Taxonomy (SCT-001 through SCT-012) and DISARM framework.
 
 **Input Data:** URLs, files, raw text, RSS feeds, directories  
 **Processing Method:** Pattern matching (local) + LLM analysis (optional) + SCT taxonomy mapping  
