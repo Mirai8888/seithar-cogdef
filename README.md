@@ -332,3 +332,29 @@ Contact: [seithar.com](https://seithar.com)
 **LAST UPDATED:** 2026-02-11  
 **CLASSIFICATION:** Research/Educational  
 **DISTRIBUTION:** Public
+
+---
+
+## Interactive Demo
+
+Try the scanner in your browser: [`demo/index.html`](demo/index.html)
+
+The demo uses client-side pattern matching for instant results. The full scanner (`scanner.py`) uses LLM-powered analysis for comprehensive detection across all 12 SCT codes.
+
+### Quick Start
+
+```bash
+# Clone
+git clone https://github.com/Mirai8888/seithar-cogdef.git
+cd seithar-cogdef
+
+# Scan a URL
+python scanner.py --url https://example.com/article
+
+# Scan text
+python scanner.py --text "Breaking news: experts warn..."
+
+# Scan with LLM analysis (requires ANTHROPIC_API_KEY)
+ANTHROPIC_API_KEY=your-key python scanner.py --url https://example.com --mode llm
+```
+

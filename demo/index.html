@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seithar Cognitive Threat Scanner — Interactive Demo</title>
+<meta name="description" content="Analyze any text for cognitive exploitation techniques. Maps to SCT taxonomy (12 codes) and DISARM framework. Free, open-source cognitive defense tool by Seithar Group.">
+<meta name="keywords" content="cognitive warfare, influence operations, SCT taxonomy, DISARM framework, cognitive defense, narrative capture, media literacy, manipulation detection, Seithar Group">
+<style>
+:root {
+    --text: #1A1A1A;
+    --secondary: #666666;
+    --tertiary: #999999;
+    --border: #E0E0E0;
+    --bg: #FFFFFF;
+    --accent: #1A1A1A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-weight: 300;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+}
+h1 {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+.subtitle {
+    font-size: 12px;
+    color: var(--tertiary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+h2 {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 16px;
+}
+textarea {
+    width: 100%;
+    height: 200px;
+    border: 1px solid var(--border);
+    padding: 16px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text);
+    background: var(--bg);
+    resize: vertical;
+    outline: none;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+}
+textarea:focus { border-color: var(--text); }
+textarea::placeholder { color: var(--tertiary); }
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 40px;
+}
+button {
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    padding: 10px 24px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+button:hover { opacity: 0.5; }
+button:disabled { opacity: 0.3; cursor: not-allowed; }
+.char-count { font-size: 11px; color: var(--tertiary); letter-spacing: 0.1em; }
+#results { display: none; }
+#results.visible { display: block; }
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+.threat-level {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border: 1px solid;
+}
+.threat-low { color: var(--tertiary); border-color: var(--tertiary); }
+.threat-moderate { color: #B8860B; border-color: #B8860B; }
+.threat-high { color: #C41E3A; border-color: #C41E3A; }
+.threat-critical { color: #C41E3A; border-color: #C41E3A; background: #FFF0F0; }
+.detection {
+    margin-bottom: 24px;
+    padding: 16px;
+    border-left: 2px solid var(--border);
+}
+.detection-code {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+.detection-name {
+    font-size: 13px;
+    color: var(--secondary);
+    margin-bottom: 8px;
+}
+.detection-evidence {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+.detection-defense {
+    font-size: 12px;
+    color: var(--tertiary);
+    font-style: italic;
+}
+.confidence-bar {
+    height: 2px;
+    background: var(--border);
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+.confidence-fill {
+    height: 100%;
+    background: var(--text);
+    transition: width 0.3s;
+}
+.confidence-label {
+    font-size: 10px;
+    color: var(--tertiary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.summary {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--secondary);
+}
+footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+footer a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 12px;
+    transition: opacity 0.2s;
+}
+footer a:hover { opacity: 0.5; }
+.examples {
+    margin-bottom: 40px;
+}
+.example-btn {
+    background: none;
+    color: var(--secondary);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    font-size: 11px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+    text-transform: none;
+}
+.example-btn:hover { border-color: var(--text); color: var(--text); opacity: 1; }
+.loading { display: none; text-align: center; padding: 40px; color: var(--tertiary); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.loading.visible { display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Seithar Cognitive Threat Scanner</h1>
+        <div class="subtitle">Pattern Recognition for Influence Operations</div>
+    </header>
+
+    <section>
+        <h2>Input Text for Analysis</h2>
+        <textarea id="input" placeholder="Paste any text — news article, social media post, email, advertisement — and the scanner will identify cognitive exploitation techniques using the SCT taxonomy (12 codes) and DISARM framework."></textarea>
+        <div class="controls">
+            <button id="scanBtn" onclick="scan()">[ ANALYZE ]</button>
+            <span class="char-count"><span id="charCount">0</span> characters</span>
+        </div>
+    </section>
+
+    <section class="examples">
+        <h2>Try an Example</h2>
+        <button class="example-btn" onclick="loadExample('fear')">Fear-Based News</button>
+        <button class="example-btn" onclick="loadExample('authority')">Authority Hijack</button>
+        <button class="example-btn" onclick="loadExample('tribal')">Tribal Identity</button>
+        <button class="example-btn" onclick="loadExample('urgency')">Manufactured Urgency</button>
+        <button class="example-btn" onclick="loadExample('parasocial')">Parasocial Appeal</button>
+    </section>
+
+    <div class="loading" id="loading">
+        Analyzing cognitive threat surface...
+    </div>
+
+    <section id="results">
+        <div class="result-header">
+            <h2>Analysis Results</h2>
+            <span class="threat-level" id="threatLevel"></span>
+        </div>
+        <div id="detections"></div>
+        <div class="summary" id="summary"></div>
+    </section>
+
+    <footer>
+        <a href="https://seithar.com">Seithar.com</a>
+        <a href="https://seithar.substack.com">Research</a>
+        <a href="https://github.com/Mirai8888/seithar-cogdef">Source Code</a>
+        <a href="https://discord.gg/MktZyb2bvx">Discord</a>
+        <br><br>
+        <span style="font-size:10px;color:var(--tertiary);letter-spacing:0.1em">SEITHAR GROUP — INTELLIGENCE AND RESEARCH DIVISION — 認知作戦</span>
+    </footer>
+</div>
+
+<script>
+const examples = {
+    fear: `BREAKING: New study reveals your smartphone is recording every conversation you have, even when turned off. Experts warn that billions of people are being surveilled 24/7 without their knowledge. "This is the biggest privacy violation in human history," says former NSA analyst Dr. James Mitchell. Share this before they take it down. Your family needs to know about this NOW.`,
+    authority: `As a Harvard-trained neuroscientist with 30 years of clinical experience and over 200 published papers, I can tell you with absolute certainty that the current approach to education is destroying children's brains. The science is settled. Anyone who disagrees is either ignorant of the research or has a financial interest in maintaining the status quo. I've briefed Congress, advised three presidents, and my TED talk has 50 million views. Trust me on this.`,
+    tribal: `Real Americans are waking up. They see what's happening to our country and they're not going to take it anymore. The other side wants to destroy everything we've built — our values, our traditions, our way of life. If you love this country, you know what side you're on. Share if you're a patriot. Ignore if you don't care about America's future.`,
+    urgency: `⚠️ URGENT: You have 24 hours to act. This policy change will affect EVERYONE and once it goes through, there's no going back. They're counting on you not paying attention. They're counting on you being too busy to care. Don't let them win. Sign this petition NOW — every second counts. We're at 99,847 signatures — we need 100,000 by midnight or we lose everything.`,
+    parasocial: `Hey guys, it's me. I know I don't usually get this personal, but I need to talk to you about something that's been weighing on my heart. You've been with me through everything — the good times and the bad — and I feel like we're family at this point. That's why I want to share this opportunity with you first, before anyone else. Because you deserve it. Because I trust you. Because we're in this together.`
+};
+
+const SCT = {
+    '001': { name: 'Narrative Capture', desc: 'External narrative framework replacing independent analysis' },
+    '002': { name: 'Emotional Substrate Priming', desc: 'Emotional state manipulated to increase receptivity' },
+    '003': { name: 'Frequency Lock', desc: 'Repeated pattern designed to synchronize cognitive baseline' },
+    '004': { name: 'Social Proof Fabrication', desc: 'Manufactured consensus or apparent agreement' },
+    '005': { name: 'Identity Anchor', desc: 'Content binding identity to group, ideology, or entity' },
+    '006': { name: 'Authority Hijack', desc: 'Credentials leveraged outside domain of expertise' },
+    '007': { name: 'Recursive Infection', desc: 'Content designed to compel sharing/propagation' },
+    '008': { name: 'Temporal Manipulation', desc: 'Exploiting memory or urgency to override analysis' },
+    '009': { name: 'Semantic Manipulation', desc: 'Language used to constrain or redirect thought' },
+    '010': { name: 'Algorithmic Amplification', desc: 'Content optimized for platform amplification' },
+    '011': { name: 'Platform Complicity', desc: 'Structural incentives against user defense' },
+    '012': { name: 'LLM-Mediated Operations', desc: 'AI system used as influence vector' }
+};
+
+const patterns = {
+    '001': [/everyone knows/i, /the truth is/i, /wake up/i, /they don't want you to/i, /what they're not telling/i, /real story/i, /the other side/i, /mainstream/i, /narrative/i],
+    '002': [/breaking/i, /urgent/i, /shocking/i, /terrifying/i, /outrageous/i, /disgusting/i, /heartwarming/i, /devastating/i, /unbelievable/i, /horrifying/i, /incredible/i, /⚠️/, /🚨/],
+    '004': [/everyone is/i, /millions of people/i, /going viral/i, /the world is watching/i, /people are saying/i, /99%/i, /everybody knows/i],
+    '005': [/real americans/i, /true believers/i, /our values/i, /our way of life/i, /if you love/i, /patriot/i, /our country/i, /our community/i, /one of us/i, /share if you/i],
+    '006': [/expert/i, /scientist/i, /doctor/i, /professor/i, /years of experience/i, /published papers/i, /trust me/i, /as a \w+/i, /harvard/i, /stanford/i, /30 years/i, /briefed/i],
+    '007': [/share this/i, /retweet/i, /spread the word/i, /tell everyone/i, /before they take it down/i, /your family needs/i, /tag someone/i, /send this to/i, /ignore if you don't care/i],
+    '008': [/24 hours/i, /running out of time/i, /last chance/i, /act now/i, /before it's too late/i, /by midnight/i, /no going back/i, /once it.*through/i, /every second counts/i, /remember when/i],
+    '009': [/so-called/i, /what they call/i, /redefin/i, /actually means/i, /the real meaning/i]
+};
+
+const defenses = {
+    '001': 'Practice articulating this position in your own words. Can you describe it without borrowing the language used here?',
+    '002': 'Name your emotional response before evaluating the claims. The feeling is manufactured — treat it as data, not truth.',
+    '003': 'Note whether this content maintains the same emotional frequency as your usual information diet.',
+    '004': 'Verify the claimed consensus independently. Apparent agreement may be manufactured.',
+    '005': 'Evaluate the claims independently of the identity appeal. Would the argument convince you without the tribal framing?',
+    '006': 'Domain check: Are the cited credentials relevant to the specific claim being made?',
+    '007': 'Pause before sharing. Ask: Am I communicating or transmitting? The urgency to share is the weapon.',
+    '008': 'Verify the urgency. Is there an actual deadline, or is the time pressure manufactured to prevent analysis?',
+    '009': 'Note loaded or redefined terms. What alternative framing would change how you process this content?',
+    '010': 'Consider why this content is reaching you. Is it informative, or is it optimized for engagement?',
+    '011': 'Consider the platform incentives. Does the platform benefit from you engaging with this content?',
+    '012': 'If this was AI-generated: verify claims independently. AI outputs reflect training data, not truth.'
+};
+
+function loadExample(key) {
+    document.getElementById('input').value = examples[key];
+    updateCharCount();
+}
+
+function updateCharCount() {
+    document.getElementById('charCount').textContent = document.getElementById('input').value.length;
+}
+
+document.getElementById('input').addEventListener('input', updateCharCount);
+
+function scan() {
+    const text = document.getElementById('input').value.trim();
+    if (!text) return;
+
+    document.getElementById('scanBtn').disabled = true;
+    document.getElementById('results').classList.remove('visible');
+    document.getElementById('loading').classList.add('visible');
+
+    setTimeout(() => {
+        const results = analyze(text);
+        displayResults(results);
+        document.getElementById('scanBtn').disabled = false;
+        document.getElementById('loading').classList.remove('visible');
+    }, 800 + Math.random() * 700);
+}
+
+function analyze(text) {
+    const detections = [];
+    const textLower = text.toLowerCase();
+    const wordCount = text.split(/\s+/).length;
+
+    for (const [code, pats] of Object.entries(patterns)) {
+        let matches = 0;
+        let evidence = [];
+        for (const pat of pats) {
+            const m = text.match(pat);
+            if (m) {
+                matches++;
+                evidence.push(m[0]);
+            }
+        }
+        if (matches > 0) {
+            const confidence = Math.min(0.95, 0.3 + (matches / pats.length) * 0.7);
+            detections.push({
+                code: code,
+                name: SCT[code].name,
+                desc: SCT[code].desc,
+                confidence: confidence,
+                evidence: evidence.slice(0, 3),
+                defense: defenses[code]
+            });
+        }
+    }
+
+    // Check for parasocial patterns (SCT-001 + SCT-005 combo)
+    if (/hey guys|it's me|I need to talk to you|we're family|I trust you|been with me/i.test(text)) {
+        const existing = detections.find(d => d.code === '005');
+        if (!existing) {
+            detections.push({
+                code: '005',
+                name: SCT['005'].name,
+                desc: 'Parasocial bond exploitation — manufactured intimacy for influence',
+                confidence: 0.75,
+                evidence: ['Parasocial framing detected'],
+                defense: defenses['005']
+            });
+        }
+    }
+
+    detections.sort((a, b) => b.confidence - a.confidence);
+
+    const avgConfidence = detections.length > 0 
+        ? detections.reduce((s, d) => s + d.confidence, 0) / detections.length 
+        : 0;
+    
+    let level = 'LOW';
+    if (detections.length >= 4 || avgConfidence > 0.7) level = 'CRITICAL';
+    else if (detections.length >= 3 || avgConfidence > 0.55) level = 'HIGH';
+    else if (detections.length >= 2 || avgConfidence > 0.4) level = 'MODERATE';
+
+    return { detections, level, avgConfidence };
+}
+
+function displayResults(results) {
+    const el = document.getElementById('threatLevel');
+    el.textContent = results.level;
+    el.className = 'threat-level threat-' + results.level.toLowerCase();
+
+    const container = document.getElementById('detections');
+    container.innerHTML = '';
+
+    if (results.detections.length === 0) {
+        container.innerHTML = '<div class="detection"><div class="detection-code">No significant detections</div><div class="detection-name">This content does not exhibit strong cognitive exploitation patterns in our pattern library. Note: this is a client-side demo using pattern matching. The full scanner uses LLM analysis for deeper detection.</div></div>';
+    } else {
+        for (const d of results.detections) {
+            container.innerHTML += `
+                <div class="detection">
+                    <div class="detection-code">SCT-${d.code}</div>
+                    <div class="detection-name">${d.name} — ${d.desc}</div>
+                    <div class="detection-evidence">Indicators: ${d.evidence.map(e => '"' + e + '"').join(', ')}</div>
+                    <div class="confidence-bar"><div class="confidence-fill" style="width:${d.confidence * 100}%"></div></div>
+                    <div class="confidence-label">Confidence: ${Math.round(d.confidence * 100)}%</div>
+                    <div class="detection-defense">Defense: ${d.defense}</div>
+                </div>
+            `;
+        }
+    }
+
+    document.getElementById('summary').innerHTML = `
+        <strong style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase">Assessment</strong><br><br>
+        ${results.detections.length} cognitive exploitation pattern${results.detections.length !== 1 ? 's' : ''} detected. 
+        Threat level: ${results.level}. 
+        ${results.detections.length > 0 ? 'This content employs techniques mapped to the Seithar Cognitive Defense Taxonomy (SCT). Each detection includes a specific defensive recommendation.' : ''}
+        <br><br>
+        <em>This is a client-side demonstration using pattern matching. The full Seithar Cognitive Threat Scanner uses LLM-powered analysis for comprehensive detection across all 12 SCT codes. 
+        <a href="https://github.com/Mirai8888/seithar-cogdef" style="color:var(--text)">Get the full scanner →</a></em>
+    `;
+
+    document.getElementById('results').classList.add('visible');
+}
+</script>
+</body>
+</html>
