@@ -358,3 +358,37 @@ python scanner.py --text "Breaking news: experts warn..."
 ANTHROPIC_API_KEY=your-key python scanner.py --url https://example.com --mode llm
 ```
 
+
+---
+
+## v2 ROADMAP — SUBLIMINAL DETECTION LAYER
+
+v1 catches surface-level manipulation — keyword markers, explicit emotional appeals, obvious tribal signaling. The kind of thing anyone paying attention can spot.
+
+v2 targets what they can't:
+
+| Layer | v1 (Current) | v2 (Development) |
+|-------|-------------|-------------------|
+| **Presupposition Loading** | — | Detects contested claims embedded as grammatical presuppositions |
+| **Frame Control** | — | Identifies false dichotomies, loaded questions, Overton manipulation |
+| **Narrative Laundering** | — | Traces source attribution chains, vague citation patterns |
+| **Emotional Priming Sequences** | — | Maps sentiment trajectories designed to lower cognitive defenses |
+| **Statistical Manipulation** | — | Flags numerical claims without denominators, cherry-picked timeframes |
+| **Identity Interpellation** | — | Detects "As a [identity]..." constructions that activate identity before presenting claims |
+| **Temporal Manipulation** | — | Identifies manufactured nostalgia, false urgency, inevitability framing |
+
+The difference: v1 catches what's said. v2 catches what's assumed.
+
+**Approach:** Hybrid pattern matching + LLM contextual analysis. Structural detections weighted higher than keyword matches.
+
+Full spec: development in progress.
+
+---
+
+## ATTRIBUTION
+
+```
+Seithar Group Intelligence and Research Division
+Cognitive Defense Instrumentation System
+認知作戦 | seithar.com
+```
