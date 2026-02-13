@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "seithar-cogdef"
+version = "1.0.0"
+description = "Cognitive Threat Scanner — detect influence operations and manipulation techniques using the Seithar SCT taxonomy"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "Seithar Group", email = "intern@seithar.com"}
+]
+keywords = [
+    "cognitive-warfare", "influence-operations", "manipulation-detection",
+    "SCT-taxonomy", "DISARM-framework", "media-literacy", "cognitive-defense",
+    "narrative-capture", "disinformation", "information-security",
+    "cognitive-security", "threat-analysis", "inoculation-theory"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+    "Intended Audience :: Information Technology",
+    "Topic :: Security",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Linguistic",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Homepage = "https://seithar.com"
+Documentation = "https://seithar.substack.com"
+Repository = "https://github.com/Mirai8888/seithar-cogdef"
+Issues = "https://github.com/Mirai8888/seithar-cogdef/issues"
+Discord = "https://discord.gg/MktZyb2bvx"
+
+[project.scripts]
+seithar-scan = "scanner:main"
+seithar-inoculate = "inoculator:main"
