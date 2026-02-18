@@ -132,7 +132,6 @@ SCT_TAXONOMY = {
             "Resistance to examining where the belief originated",
             "Sharing serves the operation regardless of agreement/disagreement"
         ]
-    }
     },
     "SCT-008": {
         "name": "Direct Substrate Intervention",
