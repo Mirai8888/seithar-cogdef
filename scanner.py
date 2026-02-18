@@ -334,7 +334,6 @@ def analyze_with_llm(content: str, api_key: str, source: str = None) -> dict:
         report = json.loads(text)
     except json.JSONDecodeError:
         # Try extracting from code block
-        import re
         match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', text, re.DOTALL)
         if match:
             report = json.loads(match.group(1))
