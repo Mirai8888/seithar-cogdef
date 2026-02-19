@@ -1,0 +1,162 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-02-19T14:49:00Z",
+  "codes": {
+    "SCT-001": {
+      "id": "SCT-001",
+      "name": "Emotional Hijacking",
+      "description": "Exploiting affective processing to bypass rational evaluation",
+      "keywords": ["urgent", "immediately", "act now", "breaking", "shocking", "outrage", "horrifying", "terrifying", "before it's too late", "last chance", "emergency", "warning", "devastating", "alarming", "critical"],
+      "embedding_text": "Emotional hijacking exploits affective processing to bypass rational evaluation. Uses urgency, fear, anger, disgust, excitement. Call to immediate action before reflection. Consequences framed as urgent or irreversible. Emotional language disproportionate to content.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-002": {
+      "id": "SCT-002",
+      "name": "Information Asymmetry Exploitation",
+      "description": "Leveraging what the target does not know",
+      "keywords": ["studies show", "experts say", "research proves", "data shows", "according to sources", "insiders report", "leaked", "cherry-picked", "selective disclosure"],
+      "embedding_text": "Information asymmetry exploitation leverages what the target does not know. Selective disclosure, cherry-picked statistics, critical context omitted, statistics without denominators or timeframes, source material unavailable or paywalled, claims that cannot be independently verified.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-003": {
+      "id": "SCT-003",
+      "name": "Authority Fabrication",
+      "description": "Manufacturing trust signals the source does not legitimately possess",
+      "keywords": ["dr.", "professor", "expert", "leading", "renowned", "prestigious", "award-winning", "world-class", "top scientist", "leading researcher", "confirmed", "beyond any doubt"],
+      "embedding_text": "Authority fabrication manufactures trust signals the source does not legitimately possess. Fake experts, astroturfing, credential inflation, credentials that cannot be verified, institutional affiliation without evidence, appeal to unnamed experts or studies, visual markers of authority without substance.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-004": {
+      "id": "SCT-004",
+      "name": "Social Proof Manipulation",
+      "description": "Weaponizing herd behavior and conformity instincts",
+      "keywords": ["everyone knows", "millions of people", "trending", "viral", "join the", "movement", "community", "don't miss out", "most people", "scientific consensus", "everyone agrees", "no one disputes"],
+      "embedding_text": "Social proof manipulation weaponizes herd behavior and conformity instincts. Bot networks simulating consensus, fake reviews, claims about what everyone thinks, manufactured engagement metrics, bandwagon framing, artificial scarcity combined with popularity claims.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-005": {
+      "id": "SCT-005",
+      "name": "Identity Targeting",
+      "description": "Attacks calibrated to the target's self-concept and group affiliations",
+      "keywords": ["as a", "people like you", "your generation", "real patriots", "true believers", "if you care about", "anyone who", "people who", "brave enough", "smart enough", "sheep", "sheeple", "complicit"],
+      "embedding_text": "Identity targeting calibrates attacks to the target's self-concept and group affiliations. Identity-based narrative capture, in-group/out-group exploitation, content addresses specific identity groups, challenges to identity trigger defensive response, personalization based on known attributes.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-006": {
+      "id": "SCT-006",
+      "name": "Temporal Manipulation",
+      "description": "Exploiting time pressure, temporal context, or scheduling",
+      "keywords": ["act now", "limited time", "expires", "deadline", "midnight", "hours left", "24 hours", "final notice", "last chance", "running out", "today only", "hurry", "closing soon"],
+      "embedding_text": "Temporal manipulation exploits time pressure, temporal context, or scheduling. News cycle exploitation, artificial deadlines, crisis amplification, time-limited offers or threats, strategic timing of information release.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-007": {
+      "id": "SCT-007",
+      "name": "Recursive Infection",
+      "description": "Self-replicating patterns where the target becomes the vector",
+      "keywords": ["share this", "spread the word", "retweet", "tell everyone", "they don't want you to know", "the media won't report", "banned", "censored", "share before", "before it's deleted", "suppressed", "hidden from you"],
+      "embedding_text": "Recursive infection creates self-replicating patterns where the target becomes the vector. Viral misinformation, memetic structures, wetiko patterns, strong compulsion to share before evaluating, content survives paraphrase, multiple unconnected people arriving at identical framing, sharing serves the operation regardless of agreement or disagreement.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-008": {
+      "id": "SCT-008",
+      "name": "Direct Substrate Intervention",
+      "description": "Physical/electrical modification of neural hardware bypassing informational processing",
+      "keywords": ["electrode stimulation", "ECT", "depatterning", "TMS", "deep brain stimulation", "neural implant", "confabulation", "brain-computer interface"],
+      "embedding_text": "Direct substrate intervention physically or electrically modifies neural hardware bypassing all informational processing. The subject cannot resist because the intervention never enters the cognitive pipeline. Key indicator: confabulation, subject generates post-hoc explanations for externally-induced behaviors.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-009": {
+      "id": "SCT-009",
+      "name": "Chemical Substrate Disruption",
+      "description": "Pharmacological modification of neurochemical operating environment",
+      "keywords": ["psychoactive", "dopamine", "cortisol", "serotonin", "neurochemical", "pharmacological", "doom scrolling", "compulsive engagement", "endorphin", "addiction"],
+      "embedding_text": "Chemical substrate disruption pharmacologically modifies the neurochemical operating environment. Psychoactive administration, engineered dopamine loops, cortisol spike induction. Modern form: compulsive engagement patterns, doom scrolling, behavioral dopaminergic capture. Post-exposure cognitive state inconsistent with content consumed.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-010": {
+      "id": "SCT-010",
+      "name": "Sensory Channel Manipulation",
+      "description": "Control, denial, or overload of sensory input channels",
+      "keywords": ["sensory deprivation", "information overload", "infinite scroll", "algorithmic feed", "notification flooding", "DDoS", "isolation", "filter bubble", "echo chamber"],
+      "embedding_text": "Sensory channel manipulation controls, denies, or overloads sensory input channels. Three modes: deprivation (substrate generates its own reality), overload (processing capacity exhausted), substitution (authentic input replaced with operator-controlled input). Modern form: infinite scroll, notification flooding, algorithmic feed curation.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-011": {
+      "id": "SCT-011",
+      "name": "Trust Infrastructure Destruction",
+      "description": "Targeted compromise of social trust networks to disable collective cognition",
+      "keywords": ["can't be trusted", "bought and paid for", "the media lies", "mainstream media", "fake news", "don't trust", "cover-up", "hiding the truth", "do your own research", "rigged", "corrupt", "institutional delegitimization"],
+      "embedding_text": "Trust infrastructure destruction targets compromise of social trust networks to disable collective cognition. Discrediting trust anchors (media, science, institutions), manufactured evidence of betrayal, promoting generalized distrust as sophistication, false flag operations attributed to trusted entities.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    },
+    "SCT-012": {
+      "id": "SCT-012",
+      "name": "Commitment Escalation & Self-Binding",
+      "description": "Exploiting subject's own behavioral outputs as capture mechanisms",
+      "keywords": ["sign the petition", "take the pledge", "public commitment", "you've already started", "no going back", "first step", "having come this far", "invested too much", "can't stop now", "point of no return"],
+      "embedding_text": "Commitment escalation and self-binding exploits the subject's own behavioral outputs as capture mechanisms. Sequential commitment requests escalating in cost, public declarations creating social binding, active participation requirements vs passive consumption, self-generated content used as evidence of genuine belief. Key finding: active participation succeeds where passive exposure fails.",
+      "evidence": [
+        {"source": "seithar-taxonomy-v1", "description": "Original SCT taxonomy definition", "date": "2026-02-19"}
+      ],
+      "status": "confirmed",
+      "created": "2026-02-19",
+      "last_seen": "2026-02-19"
+    }
+  }
+}

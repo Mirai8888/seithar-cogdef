@@ -47,11 +47,36 @@ except ImportError:
 
 
 # --- Seithar Cognitive Defense Taxonomy ---
-# Canonical source: taxonomy.py / taxonomy.json
-try:
-    from taxonomy import SCT_TAXONOMY
-except ImportError:
-    SCT_TAXONOMY = {
+# Load from taxonomy/schema.json if available, fall back to hardcoded
+def _load_taxonomy_from_schema():
+    """Load SCT taxonomy from taxonomy/schema.json."""
+    schema_path = Path(__file__).parent / "taxonomy" / "schema.json"
+    try:
+        with open(schema_path, "r", encoding="utf-8") as f:
+            schema = json.load(f)
+        taxonomy = {}
+        for code_id, code_data in schema.get("codes", {}).items():
+            if code_data.get("status") == "deprecated":
+                continue
+            taxonomy[code_id] = {
+                "name": code_data.get("name", ""),
+                "description": code_data.get("description", ""),
+                "keywords": code_data.get("keywords", []),
+            }
+        return taxonomy if taxonomy else None
+    except (FileNotFoundError, json.JSONDecodeError, KeyError):
+        return None
+
+_schema_taxonomy = _load_taxonomy_from_schema()
+
+# Canonical source: taxonomy/schema.json -> taxonomy.py -> hardcoded
+if _schema_taxonomy is not None:
+    SCT_TAXONOMY = _schema_taxonomy
+else:
+    try:
+        from taxonomy import SCT_TAXONOMY
+    except ImportError:
+        SCT_TAXONOMY = {
         "SCT-001": {
             "name": "Emotional Hijacking",
             "description": "Exploiting affective processing to bypass rational evaluation",
