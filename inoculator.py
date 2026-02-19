@@ -257,8 +257,8 @@ def format_inoculation(inoc: dict) -> str:
     lines.append(f"    {inoc['weakened_example']}")
     lines.append("")
     lines.append("────────────────────────────────────────────────────")
-    lines.append("研修生 | Seithar Group Research Division")
-    lines.append("認知作戦 | seithar.com")
+    lines.append("Seithar Group Intelligence Division")
+    lines.append("seithar.com")
     lines.append("────────────────────────────────────────────────────")
     
     return "\n".join(lines)
@@ -267,7 +267,7 @@ def format_inoculation(inoc: dict) -> str:
 def main():
     parser = argparse.ArgumentParser(
         description='Seithar Inoculation Engine (SIE)',
-        epilog='研修生 | Seithar Group Research Division | seithar.com'
+        epilog='Seithar Group Intelligence Division | seithar.com'
     )
     parser.add_argument('--technique', '-t', help='SCT code to generate inoculation for (e.g., SCT-001)')
     parser.add_argument('--all', action='store_true', help='Generate all inoculations')

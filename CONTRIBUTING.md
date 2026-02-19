@@ -82,5 +82,5 @@ The scanner supports URLs, files, text, RSS, and batch modes. Additional input s
 
 ────────────────────────────────────────────────────
 Seithar Group — Intelligence and Research Division
-認知作戦 | seithar.com
+seithar.com
 ────────────────────────────────────────────────────

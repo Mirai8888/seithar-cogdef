@@ -47,4 +47,4 @@ Maps findings to **Seithar Cognitive Threat taxonomy** (SCT-001 through SCT-012)
 
 ---
 
-Seithar Group Research Division | 認知作戦 | [seithar.com](https://seithar.com)
+Seithar Group Research Division | [seithar.com](https://seithar.com)

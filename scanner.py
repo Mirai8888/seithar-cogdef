@@ -648,8 +648,8 @@ def format_report(report: dict) -> str:
     
     lines.append("")
     lines.append("────────────────────────────────────────────────────")
-    lines.append("研修生 | Seithar Group Research Division")
-    lines.append("認知作戦 | seithar.com")
+    lines.append("Seithar Group Intelligence Division")
+    lines.append("seithar.com")
     lines.append("────────────────────────────────────────────────────")
     
     return "\n".join(lines)
@@ -660,7 +660,7 @@ def format_report(report: dict) -> str:
 def main():
     parser = argparse.ArgumentParser(
         description='Seithar Cognitive Threat Scanner (CTS)',
-        epilog='研修生 | Seithar Group Research Division | seithar.com'
+        epilog='Seithar Group Intelligence Division | seithar.com'
     )
     parser.add_argument('--url', help='URL to scan')
     parser.add_argument('--file', help='Local file to scan')

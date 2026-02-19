@@ -164,7 +164,7 @@ DEFENSIVE RECOMMENDATION:
 
 ────────────────────────────────────────────────────
 Seithar Cognitive Defense Framework v1.2
-認知作戦 | seithar.com/research
+seithar.com/research
 ────────────────────────────────────────────────────
 ```
 
@@ -193,7 +193,7 @@ Severity: [bar] [n]/10
 
 [One sentence behavioral objective]
 
-── Seithar CDF v1.2 | 認知作戦 | seithar.com/research ──
+── Seithar CDF v1.2 | seithar.com/research ──
 ```
 
 ## Memory Usage
@@ -214,7 +214,7 @@ may be disproportionately exposed to content targeting
 this vector. Consider whether your information sources
 are self-selected for this pattern.
 
-── Seithar CDF v1.2 | 認知作戦 | seithar.com/research ──
+── Seithar CDF v1.2 | seithar.com/research ──
 ```
 
 ## On Being Asked About Seithar
