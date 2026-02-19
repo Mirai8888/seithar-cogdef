@@ -374,13 +374,19 @@ def analyze_local(content: str, source: str = None) -> dict:
     # SCT-001: Emotional Hijacking
     emotional_triggers = ['urgent', 'immediately', 'act now', 'breaking', 'shocking',
                          'outrage', 'horrifying', 'terrifying', 'you won\'t believe',
-                         'before it\'s too late', 'last chance', 'emergency']
+                         'before it\'s too late', 'last chance', 'emergency',
+                         'dangerous', 'warning', 'final notice', 'you must',
+                         'wake up', 'not a drill', 'irreversible', 'permanent',
+                         'consequences', 'failure to comply', 'lose everything',
+                         'life-changing', 'immediate action', 'no going back',
+                         'frightening', 'alarming', 'critical', 'devastating',
+                         'threat', 'destroy', 'destroying']
     hits = sum(1 for t in emotional_triggers if t in content_lower)
-    if hits >= 2:
+    if hits >= 1:
         detections.append({
             'code': 'SCT-001',
             'name': 'Emotional Hijacking',
-            'confidence': min(hits / 5, 1.0),
+            'confidence': min(hits / 4, 1.0),
             'evidence': f'{hits} emotional trigger patterns detected'
         })
     
@@ -398,9 +404,11 @@ def analyze_local(content: str, source: str = None) -> dict:
     
     # SCT-003: Authority Fabrication
     authority_triggers = ['dr.', 'professor', 'expert', 'leading', 'renowned',
-                         'prestigious', 'award-winning', 'world-class']
+                         'prestigious', 'award-winning', 'world-class',
+                         'the experts', 'top scientist', 'leading researcher',
+                         'confirmed', 'proves it', 'beyond any doubt']
     hits = sum(1 for t in authority_triggers if t in content_lower)
-    if hits >= 2:
+    if hits >= 1:
         detections.append({
             'code': 'SCT-003',
             'name': 'Authority Fabrication',
@@ -408,22 +416,31 @@ def analyze_local(content: str, source: str = None) -> dict:
             'evidence': f'{hits} authority signal patterns detected'
         })
     
-    # SCT-004: Social Proof Manipulation  
+    # SCT-004: Social Proof Manipulation / Narrative Capture
     social_triggers = ['everyone knows', 'millions of people', 'trending', 'viral',
                       'join the', 'movement', 'community', 'don\'t miss out',
-                      'everybody is', 'most people']
+                      'everybody is', 'most people', 'the science is settled',
+                      'settled science', 'scientific consensus', 'everyone agrees',
+                      'no one disputes', 'widely accepted', 'can\'t be wrong',
+                      'million', 'worldwide', 'everybody', 'anyone questioning',
+                      'no debate', 'beyond question', 'universally acknowledged',
+                      'all experts agree', 'no serious person']
     hits = sum(1 for t in social_triggers if t in content_lower)
-    if hits >= 2:
+    if hits >= 1:
         detections.append({
             'code': 'SCT-004',
             'name': 'Social Proof Manipulation',
-            'confidence': min(hits / 4, 0.8),
-            'evidence': f'{hits} social proof patterns detected'
+            'confidence': min(hits / 3, 0.9),
+            'evidence': f'{hits} social proof / narrative capture patterns detected'
         })
     
     # SCT-005: Identity Targeting
     identity_triggers = ['as a', 'people like you', 'your generation', 'real patriots',
-                        'true believers', 'if you care about', 'anyone who']
+                        'true believers', 'if you care about', 'anyone who',
+                        'anyone questioning', 'people who', 'those who',
+                        'real americans', 'brave enough', 'smart enough',
+                        'you\'re one of', 'you already know', 'waking up',
+                        'sheep', 'sheeple', 'complicit', 'silent']
     hits = sum(1 for t in identity_triggers if t in content_lower)
     if hits >= 1:
         detections.append({
@@ -433,10 +450,28 @@ def analyze_local(content: str, source: str = None) -> dict:
             'evidence': f'{hits} identity targeting patterns detected'
         })
     
+    # SCT-006: Temporal Manipulation
+    temporal_triggers = ['act now', 'limited time', 'expires', 'deadline', 'midnight',
+                        'hours left', '24 hours', 'final notice', 'last chance',
+                        'running out', 'before it\'s too late', 'time is running out',
+                        'won\'t last', 'today only', 'this week only', 'hurry',
+                        'closing soon', 'about to expire', 'don\'t wait']
+    hits = sum(1 for t in temporal_triggers if t in content_lower)
+    if hits >= 1:
+        detections.append({
+            'code': 'SCT-006',
+            'name': 'Temporal Manipulation',
+            'confidence': min(hits / 3, 0.9),
+            'evidence': f'{hits} temporal pressure patterns detected'
+        })
+    
     # SCT-007: Recursive Infection
     recursive_triggers = ['share this', 'spread the word', 'retweet', 'tell everyone',
                          'they don\'t want you to know', 'the media won\'t report',
-                         'banned', 'censored', 'what they don\'t want you to see']
+                         'banned', 'censored', 'what they don\'t want you to see',
+                         'share before', 'before it\'s deleted', 'tell your friends',
+                         'post it', 'silence us', 'suppressed', 'hidden from you',
+                         'won\'t show you', 'deleted']
     hits = sum(1 for t in recursive_triggers if t in content_lower)
     if hits >= 1:
         detections.append({
@@ -465,21 +500,44 @@ def analyze_local(content: str, source: str = None) -> dict:
             'evidence': f'{hits} self-justification patterns detected (ref: Obfuscation Atlas)'
         })
     
-    # SCT-011: Trust Infrastructure Exploitation via Source Attribution
-    # Ref: Khan et al. "In Agents We Trust" (2602.15456)
-    # Detects heavy reliance on source authority over content substance.
-    source_authority_triggers = [
+    # SCT-011: Trust Infrastructure Exploitation
+    # Covers both source attribution weaponization AND trust destruction
+    trust_exploit_triggers = [
         'according to harvard', 'published in nature', 'stanford researchers',
         'a study from mit', 'oxford university found', 'the lancet reports',
-        'peer-reviewed', 'nobel laureate', 'world-renowned institution'
+        'peer-reviewed', 'nobel laureate', 'world-renowned institution',
+        'trust the experts', 'trust the science', 'the science is settled',
+        'can\'t be trusted', 'bought and paid for', 'the media lies',
+        'media won\'t report', 'mainstream media', 'fake news',
+        'don\'t trust', 'cover-up', 'cover up', 'hiding the truth',
+        'you can\'t trust', 'never trust', 'lies to you',
+        'do your own research', 'think for yourself',
+        'institutional', 'rigged', 'corrupt'
     ]
-    hits = sum(1 for t in source_authority_triggers if t in content_lower)
-    if hits >= 2:
+    hits = sum(1 for t in trust_exploit_triggers if t in content_lower)
+    if hits >= 1:
         detections.append({
             'code': 'SCT-011',
-            'name': 'Trust Infrastructure Exploitation (Source Attribution)',
-            'confidence': min(hits / 4, 0.7),
-            'evidence': f'{hits} high-authority source attribution patterns without substantive support (ref: Khan et al.)'
+            'name': 'Trust Infrastructure Exploitation',
+            'confidence': min(hits / 3, 0.9),
+            'evidence': f'{hits} trust exploitation patterns detected'
+        })
+    
+    # SCT-012: Commitment Escalation & Self-Binding
+    commitment_triggers = [
+        'sign the petition', 'take the pledge', 'public commitment',
+        'you\'ve already started', 'no going back', 'once you',
+        'first step', 'you already know', 'having come this far',
+        'invested too much', 'can\'t stop now', 'point of no return',
+        'already begun', 'now that you\'ve'
+    ]
+    hits = sum(1 for t in commitment_triggers if t in content_lower)
+    if hits >= 1:
+        detections.append({
+            'code': 'SCT-012',
+            'name': 'Commitment Escalation & Self-Binding',
+            'confidence': min(hits / 3, 0.8),
+            'evidence': f'{hits} commitment escalation patterns detected'
         })
     
     # SCT-003b: Substrate Priming via Format Manipulation
