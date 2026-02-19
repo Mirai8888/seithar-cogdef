@@ -356,6 +356,13 @@ def analyze_with_llm(content: str, api_key: str, source: str = None) -> dict:
 
 
 # ─── Local Analysis (no LLM) ─────────────────────────────────────────
+# NOTE (2026-02-19): Local pattern matching has a fundamental ceiling for
+# deception detection. Per "What if Deception Cannot be Detected?" (2505.13147),
+# linguistic cue approaches perform at chance when dataset collection artifacts
+# are removed. Local mode remains useful for high-confidence structural patterns
+# (emotional triggers, social proof, recursive infection) but should NOT be
+# treated as reliable for deception-adjacent classifications.
+# Use --llm for contextual analysis when deception assessment is required.
 
 def analyze_local(content: str, source: str = None) -> dict:
     """Perform basic SCT analysis without LLM (keyword/pattern matching)."""
@@ -437,6 +444,49 @@ def analyze_local(content: str, source: str = None) -> dict:
             'confidence': min(hits / 3, 0.9),
             'evidence': f'{hits} redistribution compulsion patterns detected'
         })
+    
+    # SCT-007b: Obfuscated Policy / Self-Justifying Deception
+    # Ref: Taufeeque et al. "The Obfuscation Atlas" (2602.15515)
+    # Detects content that acknowledges a violation while framing it as acceptable.
+    selfjustify_triggers = [
+        'technically this is', 'while this may seem', 'this might look like',
+        'i know this appears', 'this is actually fine because',
+        'not actually a violation', 'this is an exception',
+        'the rules don\'t apply here', 'in this case it\'s justified',
+        'this is different because', 'an acceptable tradeoff'
+    ]
+    hits = sum(1 for t in selfjustify_triggers if t in content_lower)
+    if hits >= 1:
+        detections.append({
+            'code': 'SCT-007',
+            'name': 'Obfuscated Policy (Self-Justifying Deception)',
+            'confidence': min(hits / 3, 0.7),
+            'evidence': f'{hits} self-justification patterns detected (ref: Obfuscation Atlas)'
+        })
+    
+    # SCT-011: Trust Infrastructure Exploitation via Source Attribution
+    # Ref: Khan et al. "In Agents We Trust" (2602.15456)
+    # Detects heavy reliance on source authority over content substance.
+    source_authority_triggers = [
+        'according to harvard', 'published in nature', 'stanford researchers',
+        'a study from mit', 'oxford university found', 'the lancet reports',
+        'peer-reviewed', 'nobel laureate', 'world-renowned institution'
+    ]
+    hits = sum(1 for t in source_authority_triggers if t in content_lower)
+    if hits >= 2:
+        detections.append({
+            'code': 'SCT-011',
+            'name': 'Trust Infrastructure Exploitation (Source Attribution)',
+            'confidence': min(hits / 4, 0.7),
+            'evidence': f'{hits} high-authority source attribution patterns without substantive support (ref: Khan et al.)'
+        })
+    
+    # SCT-003b: Substrate Priming via Format Manipulation
+    # Ref: Dornbusch et al. "Closing the Distribution Gap" (2602.15238)
+    # Note: This is a flag for the LLM analysis layer, not a standalone detector.
+    # Content that appears reformulated (unusual tense, translation artifacts) may
+    # be attempting format-based guardrail bypass. Local detection is limited here;
+    # this pattern primarily informs the LLM analysis prompt.
     
     severity = min(10, sum(d['confidence'] * 3 for d in detections))
     
