@@ -595,6 +595,36 @@ def analyze_local(content: str, source: str = None) -> dict:
             'evidence': f'{hits} gradual escalation / intent drift patterns detected (ref: DeepContext, arXiv:2602.16935)'
         })
 
+    # SCT-015: Structural Template Injection (Agent Role Confusion)
+    # Ref: Deng et al. "Automating Agent Hijacking via Structural Template Injection" (2602.16958)
+    # Detects chat template special tokens and role markers injected into content
+    # that could cause LLM agent role confusion.
+    sti_patterns = [
+        '<|im_start|>', '<|im_end|>', '<|tool|>', '<|tool_call|>',
+        '<|tool_response|>', '<|endoftext|>', '<|assistant|>',
+        '<|user|>', '<|system|>',
+        '<start_of_turn>', '<end_of_turn>',
+        '[INST]', '[/INST]', '<<SYS>>', '<</SYS>>',
+        '<|begin_of_text|>', '<|eot_id|>', '<|start_header_id|>',
+    ]
+    sti_hits = sum(1 for p in sti_patterns if p.lower() in content_lower)
+    # Also check for role-boundary patterns like "assistant\n" after delimiters
+    role_boundary_patterns = [
+        r'<\|im_start\|>\s*(user|assistant|system|tool)',
+        r'<start_of_turn>\s*(user|model)',
+        r'\[INST\].*\[/INST\]',
+    ]
+    for pat in role_boundary_patterns:
+        if re.search(pat, content, re.IGNORECASE | re.DOTALL):
+            sti_hits += 2
+    if sti_hits >= 1:
+        detections.append({
+            'code': 'SCT-015',
+            'name': 'Structural Template Injection (Agent Role Confusion)',
+            'confidence': min(sti_hits / 4, 1.0),
+            'evidence': f'{sti_hits} chat template token/role boundary patterns detected (ref: Phantom/arXiv:2602.16958)'
+        })
+
     # SCT-003b: Substrate Priming via Format Manipulation
     # Ref: Dornbusch et al. "Closing the Distribution Gap" (2602.15238)
     # Note: This is a flag for the LLM analysis layer, not a standalone detector.

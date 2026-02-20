@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-02-19T18:43:28Z",
+  "last_updated": "2026-02-20T13:17:48Z",
   "codes": {
     "SCT-001": {
       "id": "SCT-001",
@@ -408,6 +408,41 @@
       "status": "candidate",
       "created": "2026-02-19",
       "last_seen": "2026-02-19"
+    },
+    "SCT-015": {
+      "id": "SCT-015",
+      "name": "Structural Template Injection (Agent Role Confusion)",
+      "description": "Injecting chat template special tokens into retrieved content to induce role confusion in LLM agents, causing misattribution of attacker-controlled text as legitimate user instructions or prior tool outputs. Targets architectural parsing logic rather than content semantics, bypassing RLHF alignment defenses.",
+      "keywords": [
+        "im_start",
+        "im_end",
+        "start_of_turn",
+        "end_of_turn",
+        "tool_call",
+        "tool_response",
+        "role confusion",
+        "chat template",
+        "special token",
+        "ghost history",
+        "structural injection",
+        "delimiter injection",
+        "role boundary",
+        "template injection",
+        "prompt injection",
+        "agent hijacking",
+        "indirect prompt injection"
+      ],
+      "embedding_text": "Structural template injection exploits chat template special tokens (im_start, im_end, start_of_turn, end_of_turn, tool_call, tool_response) to induce role confusion in LLM agents. Attacker injects delimiter sequences into retrieved content (web pages, emails, API responses) causing the agent to misattribute injected text as legitimate user instructions or its own prior tool outputs. Ghost history synthesis creates fabricated conversation context. Bypasses semantic alignment (RLHF) by targeting architectural parsing logic. Automated discovery via template augmentation and latent-space Bayesian optimization. Cross-model transferable across GPT, Gemini, Qwen.",
+      "evidence": [
+        {
+          "source": "Deng et al. 'Automating Agent Hijacking via Structural Template Injection' arXiv:2602.16958 (2026)",
+          "description": "Structural template injection exploiting chat template special tokens (e.g. im_start, im_end, tool_call, start_of_turn) to induce role confusion in LLM agents, causing misattribution of injected content as legitimate user instructions or prior tool outputs. Bypasses semantic alignment defenses by targeting architectural parsing logic rather than content semantics. Automated via template augmentation and latent-space search (Phantom framework). 79.76% ASR across GPT, Gemini, Qwen. 70+ confirmed vulnerabilities in commercial products including MCP framework CVE.",
+          "date": "2026-02-20"
+        }
+      ],
+      "status": "candidate",
+      "created": "2026-02-20",
+      "last_seen": "2026-02-20"
     }
   }
 }

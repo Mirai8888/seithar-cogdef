@@ -33,8 +33,8 @@ class TestPropose:
         )
         assert result["action"] == "created_candidate"
         assert result["code_id"].startswith("SCT-")
-        # Should be SCT-015 (next after 012)
-        assert result["code_id"] == "SCT-015"
+        # Should be next available SCT code
+        assert result["code_id"] == "SCT-016"
 
         # Verify it exists in schema
         schema = evolve.load_schema()
