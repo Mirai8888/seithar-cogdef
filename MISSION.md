@@ -1,24 +1,17 @@
 # MISSION.md — seithar-cogdef
 
 **Status:** Operational  
-**Purpose:** Detect and classify cognitive exploitation in content. Defensive instrumentation.
+**Last Updated:** 2026-02-20  
+**Tests:** 72 passing (inoculator + scanner + evolve)
 
-## Priorities
+## Purpose
+Detect and classify cognitive exploitation in content. Defensive instrumentation.
+- Scanner: Pattern-based detection of manipulation techniques (crescendo, emotional hijacking, etc.)
+- Inoculator: Generate exposure-based inoculation content per SCT code
+- Monitor: Cognitive landscape monitoring
 
-1. Scanner accuracy — reduce false positives, improve SCT mapping precision
-2. Inoculator development — generate targeted cognitive defense training
-3. Agent integration — keep SKILL.md current for OpenClaw ecosystem
-4. DISARM framework alignment — maintain mapping to international standards
-
-## Non-Goals
-
-- This is not an offensive tool. Offensive profiling lives in HoleSpawn.
-- No editorializing. Identify mechanism, report findings.
-
-## Recent Changes
-
-| Date | Change |
-|------|--------|
-| 2026-02-18 | shared_config.py: cross-repo integration module (paths, constants, taxonomy helpers) |
-| 2026-02-18 | monitor.py: GitHub monitoring hooks (stars, forks, clones, external mentions) |
-| 2026-02-18 | Taxonomy v2.0 with dual-substrate codes (SCT-008 through SCT-012) confirmed canonical |
+## Recent (2026-02-20)
+- All 72 tests passing
+- Scanner v2 with recursive infection detection
+- Inoculator covers all 12 SCT codes
+- Note: tests live in repo root (test_*.py), not tests/ directory
