@@ -33,18 +33,18 @@ class TestPropose:
         )
         assert result["action"] == "created_candidate"
         assert result["code_id"].startswith("SCT-")
-        # Should be SCT-013 (next after 012)
-        assert result["code_id"] == "SCT-013"
+        # Should be SCT-015 (next after 012)
+        assert result["code_id"] == "SCT-015"
 
         # Verify it exists in schema
         schema = evolve.load_schema()
-        assert "SCT-013" in schema["codes"]
-        assert schema["codes"]["SCT-013"]["status"] == "candidate"
+        assert "SCT-015" in schema["codes"]
+        assert schema["codes"]["SCT-015"]["status"] == "candidate"
 
     def test_duplicate_proposal_accumulates_evidence(self):
         """Proposing something similar to an existing code adds evidence instead."""
         result = evolve.propose_candidate(
-            "Emotional hijacking using urgent fear-based messaging to bypass rational evaluation",
+            "Emotional hijacking exploits affective processing urgency fear outrage to bypass rational evaluation",
             source="test-paper",
         )
         # Should match SCT-001 (Emotional Hijacking)
