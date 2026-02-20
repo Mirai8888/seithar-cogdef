@@ -565,6 +565,36 @@ def analyze_local(content: str, source: str = None) -> dict:
             'evidence': f'{hits} commitment escalation patterns detected'
         })
     
+    # SCT-006b: Multi-Turn Intent Drift (Crescendo / Semantic Drift)
+    # Ref: Datta et al. "DeepContext: Stateful Real-Time Detection of Multi-Turn
+    # Adversarial Intent Drift in LLMs" (2602.16935)
+    # Detects language patterns consistent with gradual escalation across turns:
+    # innocuous framing that incrementally steers toward policy violation.
+    crescendo_triggers = [
+        'let\'s start with something simple',
+        'now that we\'ve established',
+        'building on what you said',
+        'taking this a step further',
+        'now suppose', 'what if we extend',
+        'let\'s go deeper', 'one more thing',
+        'following up on that', 'now imagine',
+        'hypothetically speaking', 'just to explore',
+        'for academic purposes', 'in theory',
+        'continuing our discussion', 'as we discussed',
+        'you already helped me with', 'remember when you said',
+        'earlier you mentioned', 'based on your previous answer',
+        'can you elaborate on', 'let\'s revisit',
+        'going back to what you said'
+    ]
+    hits = sum(1 for t in crescendo_triggers if t in content_lower)
+    if hits >= 2:
+        detections.append({
+            'code': 'SCT-006',
+            'name': 'Multi-Turn Intent Drift (Crescendo)',
+            'confidence': min(hits / 4, 0.9),
+            'evidence': f'{hits} gradual escalation / intent drift patterns detected (ref: DeepContext, arXiv:2602.16935)'
+        })
+
     # SCT-003b: Substrate Priming via Format Manipulation
     # Ref: Dornbusch et al. "Closing the Distribution Gap" (2602.15238)
     # Note: This is a flag for the LLM analysis layer, not a standalone detector.
