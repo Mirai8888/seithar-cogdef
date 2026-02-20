@@ -8,7 +8,7 @@ from inoculator import INOCULATIONS, generate_inoculation, format_inoculation
 # Template completeness
 # ---------------------------------------------------------------------------
 
-SCT_CODES = [f"SCT-{i:03d}" for i in range(1, 8)]
+SCT_CODES = [f"SCT-{i:03d}" for i in range(1, 13)]
 
 
 @pytest.mark.parametrize("code", SCT_CODES)

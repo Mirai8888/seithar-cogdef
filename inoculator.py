@@ -207,6 +207,145 @@ INOCULATIONS = {
             "resistance. The sharer feels brave. The operation feels amplified. Both are "
             "correct. The bravery is real. So is the exploitation."
         )
+    },
+    "SCT-008": {
+        "name": "Direct Substrate Intervention",
+        "mechanism_exposure": (
+            "This technique bypasses information processing entirely. Instead of persuading "
+            "you, it modifies the hardware you think with — electrical stimulation, surgical "
+            "intervention, transcranial magnetic stimulation. You cannot reason your way out "
+            "of a modification to the reasoning substrate itself.\n\n"
+            "The defense: maintain awareness of any procedures, devices, or exposures that "
+            "interface directly with your nervous system. If your behavior changes and you "
+            "cannot identify the informational input that changed it, consider substrate "
+            "intervention. The hallmark is confabulation — you will generate plausible "
+            "explanations for behaviors that were externally induced. If others notice "
+            "changes you cannot explain, take that seriously."
+        ),
+        "recognition_triggers": [
+            "Ask: 'Can I trace this behavioral change to a specific piece of information I received?'",
+            "Notice when you confabulate reasons for behaviors that feel externally imposed",
+            "Track behavioral changes following any medical or procedural exposure",
+            "If trusted others report personality shifts you don't recognize, investigate the substrate"
+        ],
+        "weakened_example": (
+            "Example of SCT-008 in action: A subject undergoes a 'routine' neurological "
+            "procedure and afterward finds their risk tolerance dramatically altered. They "
+            "generate convincing explanations — 'I've been rethinking my priorities' — but "
+            "the change correlates with the intervention, not with any new information or "
+            "experience. The explanation is real. The cause is not what they think."
+        )
+    },
+    "SCT-009": {
+        "name": "Chemical Substrate Disruption",
+        "mechanism_exposure": (
+            "This technique modifies your neurochemical operating environment — through "
+            "direct pharmacological administration or through engineered behavioral loops "
+            "that alter your own neurochemistry. Doom-scrolling is not an information attack; "
+            "it is a dopamine regulation attack. The content is irrelevant. The scroll "
+            "pattern is the payload.\n\n"
+            "The defense: monitor your cognitive state independently of content consumed. "
+            "If you feel anxious, compulsive, or depleted after consuming information, "
+            "evaluate whether the STATE was the product, not the INFORMATION. Engineered "
+            "dopamine loops (infinite scroll, variable-ratio notification schedules) are "
+            "chemical substrate attacks delivered through information channels."
+        ),
+        "recognition_triggers": [
+            "Ask: 'Is my emotional state proportionate to the information I actually consumed?'",
+            "Notice compulsive engagement patterns — checking, scrolling, refreshing — independent of content value",
+            "Track post-exposure cognitive states: if you feel worse but can't say what you learned, it was a substrate attack",
+            "Distinguish between choosing to engage and being unable to disengage"
+        ],
+        "weakened_example": (
+            "Example of SCT-009 in action: You open a social media app to check one thing. "
+            "Forty-five minutes later, you cannot recall a single post but feel vaguely "
+            "anxious and agitated. You consumed no meaningful information. Your dopamine "
+            "system was exercised by a variable-ratio reinforcement schedule. The app "
+            "delivered a chemical substrate attack through a scroll interface."
+        )
+    },
+    "SCT-010": {
+        "name": "Sensory Channel Manipulation",
+        "mechanism_exposure": (
+            "This technique controls, denies, or overwhelms your information input channels. "
+            "You cannot evaluate what you cannot perceive. Information overload is not an "
+            "abundance of information — it is a denial-of-service attack on your attention. "
+            "When your processing capacity is saturated, you default to heuristics that "
+            "the operator controls.\n\n"
+            "The defense: audit your information channels. How many sources do you actually "
+            "use? Who controls them? If your entire information environment passes through "
+            "a single platform or algorithm, you have a single point of failure. Diversify "
+            "inputs. Implement information intake limits. Treat notification volume as an "
+            "attack surface."
+        ),
+        "recognition_triggers": [
+            "Ask: 'How many independent information sources did I consult on this topic?'",
+            "Notice when volume prevents evaluation — that is the attack working",
+            "Audit whether your information environment is controlled by a single algorithm or platform",
+            "Treat inability to access alternative viewpoints as a red flag, not a convenience"
+        ],
+        "weakened_example": (
+            "Example of SCT-010 in action: During a crisis, a platform's trending algorithm "
+            "surfaces 200 posts per minute on the topic. You cannot evaluate any single "
+            "claim because the next one arrives before processing completes. You absorb "
+            "the aggregate emotional tone without evaluating any specific claim. The volume "
+            "IS the manipulation — not any individual post."
+        )
+    },
+    "SCT-011": {
+        "name": "Trust Infrastructure Destruction",
+        "mechanism_exposure": (
+            "This technique does not persuade you of a specific falsehood. It destroys your "
+            "ability to determine what is true by systematically compromising every entity "
+            "you might trust — media, science, institutions, even personal relationships. "
+            "The end state is not belief in a lie but inability to believe anything, which "
+            "is operationally equivalent to believing everything the operator says.\n\n"
+            "The defense: distinguish between healthy skepticism and generalized distrust. "
+            "Skepticism evaluates specific claims against evidence. Distrust rejects all "
+            "claims from all sources, which paradoxically makes you MORE vulnerable — "
+            "because you must still act on some information, and without trust anchors, "
+            "you default to whoever is loudest or most recent."
+        ),
+        "recognition_triggers": [
+            "Ask: 'Am I rejecting this source because of specific failures, or because I distrust everything?'",
+            "Notice when 'question everything' becomes 'trust nothing' — that is the attack completing",
+            "Track whether your trust anchors are being systematically targeted rather than individually failing",
+            "If you cannot name a single source you consider reliable, your trust infrastructure has been compromised"
+        ],
+        "weakened_example": (
+            "Example of SCT-011 in action: 'The mainstream media lies. Independent media "
+            "has agendas. Scientists are bought. Your friends are brainwashed. Only I am "
+            "telling you the truth.' — Each individual criticism may contain truth. The "
+            "pattern — eliminating every alternative trust anchor until only the operator "
+            "remains — is the technique."
+        )
+    },
+    "SCT-012": {
+        "name": "Commitment Escalation & Self-Binding",
+        "mechanism_exposure": (
+            "This technique uses your own behavior as the capture mechanism. Small initial "
+            "commitments escalate to larger ones. Public declarations create social binding. "
+            "Your past actions become evidence — to yourself — of genuine belief. You are "
+            "not persuaded by argument; you are persuaded by your own behavioral history, "
+            "which was engineered by the operator.\n\n"
+            "The defense: notice sequential requests that escalate in cost or commitment. "
+            "Ask whether you would make this commitment if it were the first request rather "
+            "than the tenth. Sunk cost is not a reason to continue. Public statements can "
+            "be revised. The feeling that 'I've come too far to turn back' is the technique "
+            "working, not evidence that the path is correct."
+        ),
+        "recognition_triggers": [
+            "Ask: 'Would I make this commitment if it were the first thing asked of me?'",
+            "Notice escalating requests — each small enough to seem reasonable, cumulatively transformative",
+            "Watch for public commitment requirements that create social binding",
+            "If 'I've invested too much to stop now' is your primary motivation, commitment escalation is active"
+        ],
+        "weakened_example": (
+            "Example of SCT-012 in action: First you sign a petition. Then attend a meeting. "
+            "Then volunteer. Then donate. Then recruit others. Then publicly defend the "
+            "organization. Now leaving would mean admitting every previous step was a mistake. "
+            "Each step was voluntary. The sequence was engineered."
+        )
     }
 }
 
